@@ -1,0 +1,23 @@
+{
+  "name": "custom-server-express",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "compression": "^1.7.3",
+    "express": "^4.14.0",
+    "jss": "latest",
+    "next": "^7.0.2",
+    "prop-types": "latest",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-jss": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}

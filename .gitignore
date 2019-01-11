@@ -1,0 +1,8 @@
+node_modules
+.next
+.vscode
+jest_0
+.env
+.DS_Store
+*.sql
+*.sh
