@@ -15,7 +15,7 @@ const styles = theme => ({
   root: {
     textAlign: "center",
     paddingTop: theme.spacing.unit * 20,
-    width: "800px",
+    width: "900px",
     margin: "0 auto"
   },
   root2: {
@@ -49,10 +49,20 @@ const Score = props => {
 
   return (
     <div>
-      <Typography style={{ marginTop: "100px", color: color }} variant="h1">
+      <Typography
+        style={{ fontWeight: "bold", marginTop: "100px", color: color }}
+        variant="h1"
+      >
         {score}
       </Typography>
-      <Typography style={{ marginTop: "20px", color: color }} variant="h4">
+      <Typography
+        style={{
+          marginTop: "5px",
+          marginBottom: "40px",
+          color: color
+        }}
+        variant="h4"
+      >
         {description}
       </Typography>
     </div>
@@ -60,10 +70,37 @@ const Score = props => {
 };
 
 const Breakdown = props => {
+  const value = props.value;
+  const title = props.title;
+  let valueDescription = "SAFU";
+  let red = "#D0021B";
+  let green = "#05A845";
+  let orange = "#D59C2E";
+  let color;
+  if (title === "a") {
+    valueDescription = "SAFU";
+    color = green;
+  } else if (title === "a") {
+    valueDescription = "SAFU";
+    color = green;
+  } else if (title === "a") {
+    valueDescription = "SAFU";
+    color = green;
+  } else if (title === "a") {
+    valueDescription = "SAFU";
+    color = green;
+  } else {
+    valueDescription = "SAFU";
+    color = green;
+  }
+
   return (
     <div>
       <Typography variant="h6">{props.title}</Typography>
-      <Typography variant="body1">{props.howSAFU}</Typography>
+      <Typography
+        variant="body1"
+        style={{ color: color }}
+      >{`${valueDescription}`}</Typography>
       <Typography variant="body2">{props.avgForScam}</Typography>
       <Typography variant="body2">{props.avgForLegit}</Typography>
     </div>
@@ -95,8 +132,8 @@ class Index extends React.Component {
   fetchAddressDataFromServer = ethAddress => {
     axios.get(`/api/getAddressData/`, { params: ethAddress }).then(data => {
       this.setState({
-        userEthAddressData: data.data.rows[0],
-        spinner: false
+        spinner: false,
+        userEthAddressData: data.data.rows[0]
       });
       console.log("data from server", data.data.rows[0]);
     });
@@ -119,8 +156,8 @@ class Index extends React.Component {
   handleClick = () => {
     this.fetchAddressDataFromServer(this.state.userEthAddress);
     this.setState({
-      spinner: true,
       displayResults: true,
+      spinner: true,
       existInScamDB: this.checkScamDatabases(this.state.userEthAddress)
     });
   };
@@ -135,6 +172,7 @@ class Index extends React.Component {
     const { displayResults } = this.state;
     const { existInScamDB } = this.state;
     const { score } = this.state;
+    const { userEthAddressData } = this.state;
 
     return (
       <div className={classes.root}>
@@ -142,7 +180,7 @@ class Index extends React.Component {
           Is the address SAFU?
         </Typography>
         <TextField
-          style={{ width: "800px", marginTop: "35px" }}
+          style={{ width: "600px", marginTop: "35px" }}
           id="outlined-textarea"
           label="Ethereum Address"
           placeholder="Enter an Ethereum address"
@@ -150,24 +188,27 @@ class Index extends React.Component {
           className={classes.textField}
           margin="normal"
           variant="outlined"
-          fullWidth
           onChange={this.saveValue}
         />
         {spinner ? (
-          <CircularProgress />
+          <div>
+            <CircularProgress />
+          </div>
         ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ marginTop: "35px" }}
-            onClick={this.handleClick}
-          >
-            Check SAFU
-          </Button>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginTop: "35px" }}
+              onClick={this.handleClick}
+            >
+              Check SAFU
+            </Button>
+          </div>
         )}
 
         {displayResults ? (
-          <div>
+          <div style={{ marginBottom: "50px" }}>
             <Score score={score} />
             <Typography variant="h5">Attributes</Typography>
             <div className={classes.root2}>
@@ -177,7 +218,7 @@ class Index extends React.Component {
                     {" "}
                     <Breakdown
                       title={"Title"}
-                      howSAFU={"Suspicious"}
+                      value={0.2}
                       avgForScam={"42"}
                       avgForLegit={"200"}
                     />
@@ -188,7 +229,7 @@ class Index extends React.Component {
                     {" "}
                     <Breakdown
                       title={"Title"}
-                      howSAFU={"Suspicious"}
+                      value={0.65}
                       avgForScam={"42"}
                       avgForLegit={"200"}
                     />
@@ -199,7 +240,7 @@ class Index extends React.Component {
                     {" "}
                     <Breakdown
                       title={"Title"}
-                      howSAFU={"Suspicious"}
+                      value={0.78}
                       avgForScam={"42"}
                       avgForLegit={"200"}
                     />
@@ -212,7 +253,7 @@ class Index extends React.Component {
                     {" "}
                     <Breakdown
                       title={"Title"}
-                      howSAFU={"Suspicious"}
+                      value={1}
                       avgForScam={"42"}
                       avgForLegit={"200"}
                     />
@@ -223,7 +264,7 @@ class Index extends React.Component {
                     {" "}
                     <Breakdown
                       title={"Title"}
-                      howSAFU={"Suspicious"}
+                      value={0.1}
                       avgForScam={"42"}
                       avgForLegit={"200"}
                     />
@@ -234,7 +275,7 @@ class Index extends React.Component {
                     {" "}
                     <Breakdown
                       title={"Title"}
-                      howSAFU={"Suspicious"}
+                      value={0.98}
                       avgForScam={"42"}
                       avgForLegit={"200"}
                     />

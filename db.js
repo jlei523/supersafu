@@ -1,11 +1,13 @@
+require("dotenv");
+
 const obj = {
   client: "postgresql",
   connection: {
-    host: "safuburnrate.cvdzhktav8eh.us-west-1.rds.amazonaws.com",
+    host: process.env.host,
     port: 5432,
-    database: "safuburnrate",
-    user: "safuburnrateadmin",
-    password: "safuburnrate!",
+    database: process.env.database,
+    user: process.env.user,
+    password: process.env.password,
     ssl: true
   }
 };
