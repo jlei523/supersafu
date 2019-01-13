@@ -2,7 +2,7 @@
 
 # Super SAFU by Team Burnrate
 
-SAFU Binance Pre-Hackathon 2019 Hong Kong
+Built in 24 hours at SAFU Binance Pre-Hackathon 2019 Hong Kong
 
 Check out the app in action here: [supersafu.com](https://supersafu.com)
 
