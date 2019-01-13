@@ -8,22 +8,10 @@ const prod = {
     database: process.env.database,
     user: process.env.user,
     password: process.env.password,
-    ssl: false
+    ssl: true
   }
 };
 
-const backup = {
-  client: "postgresql",
-  connection: {
-    host: "safubackupbackup.cvdzhktav8eh.us-west-1.rds.amazonaws.com",
-    port: 5432,
-    database: "safubackupbackup",
-    user: "safubackupbackupadmin",
-    password: "safubackupbackup!",
-    ssl: false
-  }
-};
-
-const knex = require("knex")(backup);
+const knex = require("knex")(prod);
 
 module.exports = knex;

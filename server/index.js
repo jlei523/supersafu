@@ -17,7 +17,7 @@ app.prepare().then(() => {
   server.get("/api/getAddressData", (req, res) => {
     const ethAddress = req.query["0"];
     console.log("run server api request");
-    db.raw(`select * from eth_features where wallet ilike '${ethAddress}'`)
+    db.raw(`select * from eth_features where wallet = '${ethAddress}'`)
       .then(data => {
         res.status(200).send(data);
         console.log("got data from postgres successfully");
