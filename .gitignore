@@ -4,5 +4,4 @@ node_modules
 jest_0
 .env
 .DS_Store
-*.sql
 *.sh
