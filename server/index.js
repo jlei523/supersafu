@@ -16,12 +16,16 @@ app.prepare().then(() => {
 
   server.get("/api/getAddressData", (req, res) => {
     const ethAddress = req.query["0"];
-    db.raw(
-      `select * from eth_features where wallet ilike '${ethAddress}'`
-    ).then(data => {
-      console.log(data);
-      res.status(200).send(data);
-    });
+    console.log("run server api request");
+    db.raw(`select * from eth_features where wallet ilike '${ethAddress}'`)
+      .then(data => {
+        res.status(200).send(data);
+        console.log("got data from postgres successfully");
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).end();
+      });
   });
 
   server.get("/a", (req, res) => {
